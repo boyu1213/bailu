@@ -5,11 +5,11 @@ y(1,2)=1/(0.0281+0.0143i);
 y(1,4)=1/(0.0304+0.015i);
 y(1,5)=1/(0.0064+0.0045i); 
 y(2,3)=1/(0.0108+0.0093i);
-y(3,4)=1/(0.0297+0.0981i);
+y(3,4)=1/(0.0297+0.0981i);a
 y(4,5)=1/(0.0297+0.0151i); 
 for	i=1:5
     for	j=i:5 
-    y(j,i)=y(i,j); 
+    y(j,i)=y(i,j);
     end
 end 
 Y=0;
@@ -17,13 +17,13 @@ Y=0;
 for	i=1:5
     for	j=1:5
         if	i~=j 
-            Y(i,j)=-y(i,j); 
+            Y(i,j)=-y(i,j);
         end
     end
 end
 % Self admittance
 for	i=1:5
-    Y(i,i)=sum(y(i,:)); 
+    Y(i,i)=sum(y(i,:));
 end
 Y 
 %Y is the admittance matrix
@@ -64,7 +64,7 @@ for	i=1:4
     for	j=1:4
         if	i~=j 
             H(i,j)=-U(i)*U(j)*(G(i,j)*sin(e(i)-e(j))-B(i,j)*cos(e(i)-e(j)));
-            N(i,j)=-U(i)*U(j)*(G(i,j)*cos(e(i)-e(j))+B(i,j)*sin(e(i)-e(j))); 
+            N(i,j)=-U(i)*U(j)*(G(i,j)*cos(e(i)-e(j))+B(i,j)*sin(e(i)-e(j)));
             L(i,j)=H(i,j);
             M(i,j)=-N(i,j);
         end
@@ -77,11 +77,11 @@ for	i=1:4
             H(i,i)=H(i,i)+U(i)*U(j)*(G(i,j)*sin(e(i)-e(j))-B(i, j)*cos (e(i)-e(j)));
             N(i,i)=N(i,i)-U(i)*U(j)*(G(i, j)*cos(e(i)-e(j))+B(i,j)*sin(e(i)-e(j)));
             M(i,i)=M(i,i)-U(i)*U(j)*(G(i,j)*cos(e(i)-e(j))+B(i,j)*sin(e(i)-e(j)));
-            L(i,i)=L(i,i)-U(i)*U(j)*(G(i,j)*sin(e(i)-e(j))-B(i,j)*cos(e(i)-e(j))); 
+            L(i,i)=L(i,i)-U(i)*U(j)*(G(i,j)*sin(e(i)-e(j))-B(i,j)*cos(e(i)-e(j)));
         end
     end
     N(i,i)=N(i,i)-2*(U(i))^2*G(i,i);
-    L(i,i)=L(i,i)+2*(U(i))^2*B(i,i); 
+    L(i,i)=L(i,i)+2*(U(i))^2*B(i,i);
 end
 J=[H,N;M,L];	% J is Jacobian matrix
 ox=-((inv(J))*fx); 
